@@ -34,15 +34,18 @@ urlpatterns = [
     # Device URLs
     path('devices/', DeviceListCreateView.as_view(), name='device-list-create'),
     path('devices/<int:pk>/', DeviceRetrieveUpdateDestroyView.as_view(), name='device-detail'),
-    path('devices/<int:pk>/assign/', DeviceAssignView.as_view(), name='device-assign'),
 
     # Employee URLs
     path('employees/', EmployeeListCreateView.as_view(), name='employee-list-create'),
     path('employees/<int:pk>/', EmployeeRetrieveUpdateDestroyView.as_view(), name='employee-detail'),
-    path('employees/<int:pk>/assignments/', EmployeeAssignmentsListView.as_view(), name='employee-assignments-list'),
+
     # DeviceAssignment URLs
     path('device-assignments/', DeviceAssignmentListCreateView.as_view(), name='device-assignment-list-create'),
     path('device-assignments/<int:pk>/', DeviceAssignmentRetrieveUpdateDestroyView.as_view(), name='device-assignment-detail'),
+    
+    #DeviceConditionLogs
+    path('device-condition-logs/', DeviceConditionLogListCreateView.as_view(), name='device-condition-log-list-create'),
+    path('device-condition-logs/<int:pk>/', DeviceConditionLogRetrieveUpdateDestroyView.as_view(), name='device-condition-log-detail'),
 
     # for admin
     path("admin/", admin.site.urls),
@@ -55,4 +58,9 @@ urlpatterns = [
     # Optional UI:
     path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+
+    # Default URL - Redirect to API schema
+    path('', SpectacularAPIView.as_view(), name='default'),
+
+
 ]
