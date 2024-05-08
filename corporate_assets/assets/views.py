@@ -2,9 +2,13 @@ from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from.models import Company, Employee, Device, DeviceAssignment, DeviceConditionLog
-from.serializers import CompanySerializer, EmployeeSerializer, DeviceSerializer, DeviceAssignmentSerializer, DeviceConditionLogSerializer, UserSerializer
+from .models import Company, Employee, Device, DeviceAssignment, DeviceConditionLog
+from .serializers import CompanySerializer, EmployeeSerializer, DeviceSerializer, DeviceAssignmentSerializer, DeviceConditionLogSerializer
 from django.contrib.auth import get_user_model
+from rest_framework.generics import RetrieveAPIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import serializers
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
