@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from.models import Company, Employee, Device, DeviceAssignment, DeviceConditionLog
+from .models import Company, Employee, Device, DeviceAssignment, DeviceConditionLog
 
 class CompanySerializer(serializers.ModelSerializer):
     class Meta:
