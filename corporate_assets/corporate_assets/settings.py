@@ -137,3 +137,10 @@ SPECTACULAR_SETTINGS = {
     'TITLE': 'Corporate Assets API',
     'DESCRIPTION': 'API documentation for the Corporate Assets project.',
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.gitpod.io',  # Wildcard domain
+    'https://*.dev/',
+    'https://localhost',
+    'https://127.0.0.1',
+]
