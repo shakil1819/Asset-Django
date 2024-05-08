@@ -1,15 +1,23 @@
+# assets/models.py
+
 from django.db import models
 from django.contrib.auth.models import User
-# Company: represents a company with a name and address.
+
 class Company(models.Model):
     name = models.CharField(max_length=255)
     address = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name = 'Company'
+        verbose_name_plural = 'Companies'
+        ordering = ['name']
+        db_table = 'company'
+
     def __str__(self):
         return self.name
-#Employee: represents an employee with a name, email, and a foreign key to the company they belong to.
+
 class Employee(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
@@ -18,9 +26,15 @@ class Employee(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name = 'Employee'
+        verbose_name_plural = 'Employees'
+        ordering = ['name']
+        db_table = 'employee'
+
     def __str__(self):
         return self.name
-# Device: represents a device with a type, brand, model, and serial number.
+
 class Device(models.Model):
     DEVICE_TYPES = [
         ('PHONE', 'Phone'),
@@ -35,9 +49,15 @@ class Device(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name = 'Device'
+        verbose_name_plural = 'Devices'
+        ordering = ['brand', 'model']
+        db_table = 'device'
+
     def __str__(self):
         return f"{self.brand} {self.model} ({self.serial_number})"
-# DeviceAssignment: represents the assignment of a device to an employee, with fields for the assigned and expected return dates.
+
 class DeviceAssignment(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
@@ -47,15 +67,27 @@ class DeviceAssignment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name = 'Device Assignment'
+        verbose_name_plural = 'Device Assignments'
+        ordering = ['-assigned_at']
+        db_table = 'device_assignment'
+
     def __str__(self):
         return f"{self.employee.name} - {self.device}"
-# DeviceConditionLog: represents the condition of a device at the time of assignment and return, with a foreign key to the device assignment.
+
 class DeviceConditionLog(models.Model):
     assignment = models.ForeignKey(DeviceAssignment, on_delete=models.CASCADE)
     condition_on_assignment = models.TextField()
     condition_on_return = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Device Condition Log'
+        verbose_name_plural = 'Device Condition Logs'
+        ordering = ['-created_at']
+        db_table = 'device_condition_log'
 
     def __str__(self):
         return f"{self.assignment} - Condition Log"

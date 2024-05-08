@@ -26,3 +26,4 @@ schema.yml
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Django
 tree.txt
+.gitpod.yml
