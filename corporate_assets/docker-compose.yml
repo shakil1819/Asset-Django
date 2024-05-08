@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    # command: python /code/manage.py migrate && python /code/manage.py runserver 0.0.0.0:8000
+    # volumes:
+    #   - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=corporate_assets.settings
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
