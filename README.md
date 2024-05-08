@@ -28,7 +28,7 @@ The Corporate Asset Tracker is a Django application designed to track corporate 
 docker compose up --build
 ```
 4. Access the application at `http://localhost:8000/`.
-5. Access the admin panel at `http://localhost:8000/admin/`.
+5. Access the admin panel at `http://localhost:8000/admin/`. [Default ID:Pass is admin:admin]
 6. Access the api documentation at `http://localhost:8000/api/schema/redoc`
 7. Access the swagger documentation at `http://localhost:8000/api/schema/swagger-ui`.
 
