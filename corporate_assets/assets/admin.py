@@ -1,5 +1,5 @@
 from django.contrib import admin
-from.models import Company, Employee, Device, DeviceAssignment, DeviceConditionLog
+from .models import Company, Employee, Device, DeviceAssignment, DeviceConditionLog
 
 admin.site.site_header = "Asset Tracker API"
 admin.site.site_title = "Corporate Asset Tracker Django REST API"
